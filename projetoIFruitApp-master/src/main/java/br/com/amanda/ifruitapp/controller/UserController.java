@@ -8,11 +8,18 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     UserService userService;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping("/user/{id}")
-    public User retornaUsuarioPorId(@PathVariable int id){
-        return userService.buscarPorId(id);
-        }
+    public User retornaUsuarioPorId(@PathVariable int id) {
+        return userService.searchById(id);
     }
+
+    @PostMapping("/add_user")
+    public User create(@RequestBody User user) {
+        return userService.create(user);
+    }
+
+}
